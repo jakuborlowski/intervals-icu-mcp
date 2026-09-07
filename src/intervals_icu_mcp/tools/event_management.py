@@ -316,9 +316,9 @@ async def create_event(
     ] = None,
     event_type: Annotated[
         str | None,
-        "Activity discipline (NOT the category): Ride, Run, Swim, Walk, Hike, "
-        "WeightTraining, Workout, VirtualRide, VirtualRun, Other. Use WeightTraining "
-        "or Workout for gym/strength sessions. Required for RACE_A/B/C events.",
+        "Activity discipline (NOT the category): " + ACTIVITY_TYPES_HINT + ". "
+        "Use WeightTraining or Workout for gym/strength sessions. "
+        "Required for RACE_A/B/C events.",
     ] = None,
     duration_seconds: Annotated[int | None, "Planned duration in seconds"] = None,
     distance_meters: Annotated[float | None, "Planned distance in meters"] = None,
