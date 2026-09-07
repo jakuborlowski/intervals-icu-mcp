@@ -92,9 +92,13 @@ VALID_CATEGORIES = {
 CATEGORY_ALIASES = {"RACE": "RACE_A", "GOAL": "TARGET"}
 VALID_AVAILABILITY = {"NORMAL", "LIMITED", "UNAVAILABLE"}
 RACE_CATEGORIES = {"RACE_A", "RACE_B", "RACE_C"}
-# Canonical Intervals.icu activity disciplines accepted by the API for the
-# `type` field. Must match models.ActivityType.
-ACTIVITY_TYPES_HINT = "Ride, Run, Swim, Walk, Hike, VirtualRide, VirtualRun, Other"
+# Common Intervals.icu activity disciplines for the event `type` field. The
+# API validates server-side against a larger enum (see the import-workout
+# type list in openapi-spec.json) and rejects unknown values with 422.
+# Must match models.ActivityType.
+ACTIVITY_TYPES_HINT = (
+    "Ride, Run, Swim, Walk, Hike, WeightTraining, Workout, VirtualRide, VirtualRun, Other"
+)
 
 # Compact, in-context workout-syntax cheat-sheet for the `description` field.
 # Inlined (not only pointed at via the intervals-icu://workout-syntax resource)
@@ -313,7 +317,8 @@ async def create_event(
     event_type: Annotated[
         str | None,
         "Activity discipline (NOT the category): Ride, Run, Swim, Walk, Hike, "
-        "VirtualRide, VirtualRun, Other. Required for RACE_A/B/C events.",
+        "WeightTraining, Workout, VirtualRide, VirtualRun, Other. Use WeightTraining "
+        "or Workout for gym/strength sessions. Required for RACE_A/B/C events.",
     ] = None,
     duration_seconds: Annotated[int | None, "Planned duration in seconds"] = None,
     distance_meters: Annotated[float | None, "Planned distance in meters"] = None,

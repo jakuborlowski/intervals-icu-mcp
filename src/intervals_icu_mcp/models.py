@@ -7,7 +7,18 @@ from typing import Any, Literal, cast
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, field_validator, model_validator
 
 # Type aliases for common enums
-ActivityType = Literal["Ride", "Run", "Swim", "Walk", "Hike", "VirtualRide", "VirtualRun", "Other"]
+ActivityType = Literal[
+    "Ride",
+    "Run",
+    "Swim",
+    "Walk",
+    "Hike",
+    "WeightTraining",
+    "Workout",
+    "VirtualRide",
+    "VirtualRun",
+    "Other",
+]
 EventCategory = Literal[
     "WORKOUT",
     "NOTE",

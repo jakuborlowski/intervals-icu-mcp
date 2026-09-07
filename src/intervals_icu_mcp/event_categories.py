@@ -29,8 +29,10 @@ category. The API enforces the enum strictly — unknown values are rejected.
 - `RACE_C` — minor race / tune-up event
 
 Race events **require** an `event_type` (activity discipline). The API
-rejects races without a discipline. Valid disciplines: `Ride`, `Run`,
-`Swim`, `Walk`, `Hike`, `VirtualRide`, `VirtualRun`, `Other`.
+rejects races without a discipline. Common disciplines: `Ride`, `Run`,
+`Swim`, `Walk`, `Hike`, `WeightTraining`, `Workout`, `VirtualRide`,
+`VirtualRun`, `Other` (the API validates against a larger enum and
+rejects unknown values with 422).
 
 ### Performance goals and ATP weekly targets
 - `TARGET` — a performance goal or milestone (e.g. "FTP 300W by June"), or
